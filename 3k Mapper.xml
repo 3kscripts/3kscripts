@@ -1328,18 +1328,21 @@ end
     --make exit stubs
     local existingExits = getRoomExits(roomID)
     for i,v in pairs(newexits) do
-        if #existingExits == 0 then
+        if #existingExits == 0 and dirtypes[v] then
             setExitStub(roomID, dirtypes[v],1)
         else
-            if not existingExits[v] then
+            if not existingExits[v] and dirtypes[v] then
                 setExitStub(roomID, dirtypes[v],1)
             end
         end
     end
     --connect any exit stubs we can
-    for i,v in pairs(getExitStubs(roomID)) do
-        connectExitStub(roomID, v)
-    end
+	local stubs = getExitStubs(roomID)
+	if stubs then
+	    for i,v in pairs() do
+   	     connectExitStub(roomID, v)
+	    end
+	end
 	end
 	return roomID
 end
