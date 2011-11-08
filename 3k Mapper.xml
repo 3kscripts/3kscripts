@@ -1339,7 +1339,7 @@ end
     --connect any exit stubs we can
 	local stubs = getExitStubs(roomID)
 	if stubs then
-	    for i,v in pairs() do
+	    for i,v in pairs(stubs) do
    	     connectExitStub(roomID, v)
 	    end
 	end
