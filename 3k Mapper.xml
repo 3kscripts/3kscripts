@@ -291,7 +291,7 @@ end</script>
                         <string>Your legs run away with you (.+).</string>
                     </regexCodeList>
                     <regexCodePropertyList>
-                        <integer>0</integer>
+                        <integer>1</integer>
                     </regexCodePropertyList>
                 </Trigger>
             </TriggerGroup>
@@ -913,11 +913,7 @@ end</script>
                 <Script isActive="yes" isFolder="no">
                     <name>Mapper Variables</name>
                     <packageName></packageName>
-                    <script>function initMapper()
-	lastId = mapVariables[1]
-end
-
-function Set(s)
+                    <script>function Set(s)
 	local set = {}
 	for _,i in pairs(s) do
 		set[i] = true
@@ -953,7 +949,13 @@ calculateMapOffset()
 reversedir = {[1]=6, [2]=8, [3]=7,[4]=5,[5]=4,[6]=1,[7]=3,[8]=2,[9]=10,[10]=9}
 speedwalking = nil
 mapspecial = nil
-mapfollow = 1</script>
+mapfollow = 1
+local vars = getMapVar()
+if vars['RoomId'] then
+	lastId = vars['RoomId']
+	UserArea=getRoomArea(lastId)
+	centerview(lastId)
+end</script>
                     <eventHandlerList/>
                 </Script>
                 <Script isActive="yes" isFolder="no">
